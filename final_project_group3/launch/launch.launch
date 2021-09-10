@@ -1,0 +1,5 @@
+<launch>
+    <node name="fiducial_broadcaster" pkg="final_project_group3" type="fiducial_broadcaster" output="screen"/>
+    <node name="follower" pkg="final_project_group3" type="follower" output="screen"/>
+    <node name="leader" pkg="final_project_group3" type="leader" output="screen"/>
+</launch>

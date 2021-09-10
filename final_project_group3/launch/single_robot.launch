@@ -1,0 +1,27 @@
+<launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose"/>
+    <arg name="has_marker" default="false"/>
+
+    
+    <node name="spawn_turtlebot" pkg="gazebo_ros" type="spawn_model"
+     args="$(arg init_pose) -urdf -param /robot_description -model $(arg robot_name)"
+     respawn="false" output="screen" />
+
+    <!-- start robot state publisher -->
+    <node 
+        name="robot_state_publisher" 
+        pkg="robot_state_publisher" 
+        type="robot_state_publisher" 
+        output="screen"/>
+
+    <!-- check if a marker needs to be put on this robot -->
+     <node if="$(arg has_marker)"
+        name="spawn_marker_on_robot"
+        pkg="final_project_group3"
+        type="spawn_marker_on_robot"
+        output="screen"/>
+
+    <!-- <node pkg="robot_state_publisher" type="robot_state_publisher"
+          name="robot_state_publisher" output="screen"/> -->
+</launch>
